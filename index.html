@@ -12,10 +12,22 @@
     <div id="app">
 
         <div class="container">
-            <i class="fa-solid fa-circle-left"></i>
-            <div class="slider"></div>
-            <div class="thumbs"></div>
-            <i class="fa-solid fa-circle-right"></i>
+            <i class="fa-solid fa-circle-left" @click="prev"></i>
+    
+            <div id="slider">
+                <div class="item">
+                    <img v-bind:src="`./assets/${images[currentActive].image}`" alt="">
+                    <div class="paragraph">
+                        <h2>{{images[currentActive].title}}</h2>
+                        <p>{{images[currentActive].text}}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="thumbnails">
+                <img v-for="(element, i) in images" v-bind:src="`./assets/${images[i].image}`" alt="" v-bind:class="(i == currentActive) ? 'active' : 'no-active' " class="d-block" @click="changeImg(i)">
+            </div>
+    
+            <i class="fa-solid fa-circle-right" @click="next"></i>
         </div>
 
     </div>
